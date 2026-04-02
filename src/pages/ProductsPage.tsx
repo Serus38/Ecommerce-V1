@@ -1,11 +1,14 @@
 import { CardProduct } from "../components/products/CardProduct"
 import { ContainerFilter } from "../components/products/ContainerFilter"
-import { allproducts } from "../data/initialData"
-import { prepareProducts } from "../helpers"
+import { prepareProducts } from "../helpers";
+import { useProducts } from "../hooks"
 
 export const ProductsPage = () => {
-  
-  const preparedProducts = prepareProducts(allproducts)
+  const { products, isLoading } = useProducts();
+
+  if (isLoading || !products) return <p>Loading...</p>;
+
+  const preparedProducts = prepareProducts(products);
   
   return (<>
     <h1 className="text-5xl font-semibold text-center mb-12">

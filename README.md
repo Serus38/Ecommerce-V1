@@ -10,6 +10,32 @@ Plantilla Ecommerce para cualquier tipo negocio de tienda - ventas
 - React Hook Form
 - Zod
 
+## Como arrancar el proyecto
+
+1. Instala las dependencias:
+
+```bash
+npm install
+```
+
+2. Inicia el entorno de desarrollo:
+
+```bash
+npm run dev
+```
+
+3. Abre en el navegador la URL que muestra Vite (por defecto suele ser `http://localhost:5173`).
+
+Comandos utiles:
+
+```bash
+# Construccion para produccion
+npm run build
+
+# Vista previa del build
+npm run preview
+```
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
