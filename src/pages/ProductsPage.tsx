@@ -1,12 +1,25 @@
+import { useState } from "react";
 import { CardProduct } from "../components/products/CardProduct"
 import { ContainerFilter } from "../components/products/ContainerFilter"
 import { prepareProducts } from "../helpers";
-import { useProducts } from "../hooks"
+import { useFilteredProducts, useProducts } from "../hooks"
 
 export const ProductsPage = () => {
-  const { products, isLoading } = useProducts();
 
-  if (isLoading || !products) return <p>Loading...</p>;
+  const [page, setPage] = useState(1);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+
+
+  const { 
+    data: products = [],
+    isLoading,
+    totalProducts,
+  } = useFilteredProducts({ 
+    page, 
+    brands: selectedBrands, 
+  });
+
+
 
   const preparedProducts = prepareProducts(products);
   
@@ -18,9 +31,18 @@ export const ProductsPage = () => {
     <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {/*Filter*/}
 
-      <ContainerFilter />
+      <ContainerFilter 
+         setSelectedBrands={setSelectedBrands}  
+         selectedBrands={selectedBrands}    
+      />
 
-      <div className="col-span-2 lg:col-span-2 xl:col-span-4 flex flex-col gap-12">
+      {
+        isLoading ? (
+          <div className="col-span-2 flex items-center justify-center h-[500px]">
+            <p className="text-2x1">Loading...</p>
+          </div>
+        ) : (
+          <div className="col-span-2 lg:col-span-2 xl:col-span-4 flex flex-col gap-12">
         <div className="grid grid-cols-2 gap-3 gap-y-10 xl:grid-cols-4">
           {preparedProducts.map(product => (
             <CardProduct
@@ -37,6 +59,10 @@ export const ProductsPage = () => {
 
         {/*Pagination*/}
       </div>
+        )
+      }
+
+      
     </div>
   </>
   )
