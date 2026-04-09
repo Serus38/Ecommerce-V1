@@ -1,4 +1,4 @@
-import { type JSONContent, useEditor } from '@tiptap/react'
+import { EditorContent, type JSONContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 
 interface Props {
@@ -10,9 +10,20 @@ export const ProductDescription = ({ content }: Props) => {
     const editor = useEditor({
         extensions: [StarterKit],
         content,
+        editable: false,
+        editorProps: {
+            attributes: {
+                class: 'prose prose-sm sm:prose-base max-w-none',
+            },
+        },
     });
 
     return (
-        <div>ProductDescription</div>
+        <div className='mt-12'>
+            <h2 className="text-2xl font-bold text-center mb-8 underline">
+                Product Description
+            </h2>
+            <EditorContent editor={editor} />
+        </div>
     )
 }

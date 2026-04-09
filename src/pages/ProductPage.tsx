@@ -4,15 +4,14 @@ import { formatPrice } from "../helpers"
 import { LuMinus, LuPlus } from "react-icons/lu"
 import { CiDeliveryTruck } from "react-icons/ci"
 import { BsChatLeftText } from "react-icons/bs"
+import { GridImages } from "../components/one-product/GridImages"
 
 export const ProductPage = () => {
   return (
     <>
       <div className="h-fit flex flex-col md:flex-row gap-16 mt-8">
-        {/*TODO: Product Image*/}
-        <div>
-          Image Galery
-        </div>
+        {/*Product Image*/}
+        <GridImages images={[]} />
 
         <div className="flex-1 space-y-5">
           <h1 className="text-3xl font-bold tracking-tight">
@@ -127,8 +126,8 @@ export const ProductPage = () => {
         </div>
     </div>
 
-    {/*Product Description, Reviews, etc
-    <ProductDescription />*/}
+    {/*Product Description, Reviews, etc*/}
+    <ProductDescription />
     </>
   )
 }
