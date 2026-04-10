@@ -17,7 +17,7 @@ export const GridImages = ({ images }: Props) => {
         <img
           src={activeImage}
           alt="Product Image"
-          className="h-full w-full object contain"
+          className="h-full w-full object-contain"
         />
       </div>
 
