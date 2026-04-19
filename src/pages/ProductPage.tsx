@@ -11,6 +11,7 @@ import type { VariantProduct } from "../interfaces"
 import { ProductDescription } from "../components/one-product/ProductDescription"
 import { Tag } from "../components/shared/Tag"
 import { Loader } from "../components/shared/Loader"
+import { useCounterStore } from "../store/counter.store"
 
 
 interface Acc {
@@ -37,6 +38,10 @@ export const ProductPage = () => {
   const [selectedVariant, setselectedVariant] = useState<VariantProduct | null>(
     null
   )
+
+  const count = useCounterStore(state => state.count);
+  const increment = useCounterStore(state => state.increment);
+  const decrement = useCounterStore(state => state.decrement);
 
   //Agrupar variantes por color
   const colors = useMemo(() => {
@@ -161,7 +166,7 @@ export const ProductPage = () => {
               }
             </div>
 
-//TODO: Manejar la seleccion de color y variantes, en caso de tener opciones de almacenamiento, RAM, etc, se pueden agregar aquí para luego mostrarlas en el UI
+  {/*TODO: Manejar la seleccion de color y variantes, en caso de tener opciones de almacenamiento, RAM, etc, se pueden agregar aquí para luego mostrarlas en el UI
             {/*TODO: Opciones de almacenamiento, RAM, etc
             <div className="flex flex-col gap-3">
               <p className="text-xs font-medium">
@@ -212,11 +217,14 @@ export const ProductPage = () => {
                   </p>
 
                   <div className="flex gap-8 px-5 py-3 border border-slate-200 w-fit rounded-full">
-                    <button>
+                    <button
+                      onClick={decrement}
+                      disabled={count === 1}>
                       <LuMinus size={15} />
                     </button>
-                    <span className="text-slate-500 text-sm">1</span>
-                    <button>
+                    <span className="text-slate-500 text-sm">{count}</span>
+                    <button
+                      onClick={increment}>
                         <LuPlus size={15} />
                     </button>
                   </div>

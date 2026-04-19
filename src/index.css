@@ -1,10 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "tailwindcss";
+
+@theme {
+    --font-montserrat: 'Montserrat', sans-serif;
+
+    --animate-fade-in: fade-in 0.25s ease-out;
+    --animate-slide-in: slide-in 0.3s ease-out;
+    --animate-slide-in-left: slide-in-left 0.3s ease-out;
+    --animate-spin-slow: spin 2s linear infinite;
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-in {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-in-left {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
 
 
 /*Clases personalizadas*/
