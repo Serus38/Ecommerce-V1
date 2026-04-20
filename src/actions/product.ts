@@ -75,9 +75,7 @@ export const getRandomProducts = async () => {
   }
 
   //Seleccionamos 4 productos aleatorios de la lista obtenida
-  const randomProducts = products
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 4);
+  const randomProducts = products.sort(() => 0.5 - Math.random()).slice(0, 4);
 
   return randomProducts;
 };
@@ -96,4 +94,18 @@ export const getProductBySlug = async (slug: string) => {
   }
 
   return data;
+};
+
+export const searchProducts = async (searchTerm: string) => {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*, variants(*)")
+    .ilike("name", `%${searchTerm}%`); //Busca productos cuyo nombre contenga el término de búsqueda (case-insensitive)
+
+  if (error) {
+    console.log(error.message);
+    throw new Error(error.message);
+  }
+  return data;
+
 };
